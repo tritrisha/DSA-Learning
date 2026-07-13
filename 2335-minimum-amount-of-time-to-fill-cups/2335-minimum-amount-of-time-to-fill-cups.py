@@ -1,29 +1,23 @@
 class Solution:
     def fillCups(self, amount: List[int]) -> int:
-        r=[]
-        for i in amount:
-            r.append(i)
-        r.sort()
         n=0
-        if len(r)==r.count(0):
+        if len(amount)==amount.count(0):
             return 0
-        while len(r)!=r.count(0):
-            print(r)
-            while r[0]==0:
-                r.pop(0)
-            if r:
-                if len(r)!=1:
-                    r[0]=r[0]-1
-                    r[-1]=r[-1]-1
-                else:
-                    r[0]=r[0]-1
 
+        while len(amount)!=amount.count(0):
+            amount.sort()
+            while amount[0]==0:
+                amount.pop(0)
+            if amount:
+                if len(amount)!=1:
+                    amount[0]-=1
+                    amount[-1]-=1
+                else:
+                    amount[0]-=1
             else:
                 break
-
             n+=1
-            r.sort()
-
+            
         return n
 
 
