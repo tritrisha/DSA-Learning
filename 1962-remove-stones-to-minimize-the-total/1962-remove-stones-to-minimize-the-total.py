@@ -4,9 +4,9 @@ class Solution:
         heapify(pl)
         print(pl)
         for i in range(k):
-            heappush(pl, floor(heappop(pl)/2))
+            heappush(pl, (heappop(pl)//2))
 
-        
         return -sum(pl)
             
+        
 
