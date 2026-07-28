@@ -13,6 +13,7 @@ class Solution:
         for i in range(n):
             if i not in vis:
                 c+=1
+                vis.add(i)
                 dfs(i)
 
         return c
