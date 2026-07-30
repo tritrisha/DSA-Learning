@@ -1,38 +1,23 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        n=len(isConnected)
-        vis=set()
-        c=0
         def dfs(node):
             for j in range(n):
-                if isConnected[node][j]==1 and j not in vis:
-                    vis.add(j)
+                if isConnected[node][j]==1 and visited[j]!=1:
+                    visited[j]=1
                     dfs(j)
 
+            return 
 
+        c=0
+        n=len(isConnected)
+        visited=[0]*n
         for i in range(n):
-            if i not in vis:
+            if visited[i]==0:
                 c+=1
-                vis.add(i)
                 dfs(i)
+                
 
         return c
-
-
-        
-
-
-
-
-
-
-
-
-    
-
-
-
-
 
 
 
