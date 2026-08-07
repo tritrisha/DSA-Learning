@@ -10,32 +10,24 @@ class Solution:
                 if g[i][j]==2:
                     q.append([i, j, cou])
 
+        direc=[(0, 1), (0, -1), (1, 0), (-1, 0)]
         while q:
             i, j, cou=q.popleft()
             cou+=1
-            if i+1<r and g[i+1][j]==1:
-                g[i+1][j]=2
-                q.append([i+1, j, cou])
 
-            if j+1<c and g[i][j+1]==1:
-                g[i][j+1]=2
-                q.append([i, j+1, cou])
+            for x, y in direc:
+                nx=x+i
+                ny=j+y
 
-            if i-1>=0 and g[i-1][j]==1:
-                g[i-1][j]=2
-                q.append([i-1, j, cou])
+                if nx<0 or ny<0 or nx>=r or ny>=c or g[nx][ny]!=1:
+                    continue
 
-            if j-1>=0 and g[i][j-1]==1:
-                g[i][j-1]=2
-                q.append([i, j-1, cou])
-            
+                g[nx][ny]=2
+                q.append([nx, ny, cou])
 
-        print(g) 
-        print(grid)
         for i in range(r):
-            for j in range(c):
-                if g[i][j]==1:
-                    return -1
+            if 1 in g[i]:
+                return -1
 
         if cou==0:
             return 0
