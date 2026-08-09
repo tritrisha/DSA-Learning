@@ -33,9 +33,8 @@ class Solution:
 
         count=0
         for i in range(1, r-1):
-            for j in range(1, c-1):
-                if grid[i][j]==1:
-                    count+=1
+            count+=sum(grid[i])
+                
 
 
         return count
