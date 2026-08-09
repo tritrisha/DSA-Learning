@@ -11,15 +11,13 @@ class Solution:
             if board[i][0]=="O":
                 q.append([i, 0])
 
-        for j in range(c):
-            if board[0][j]=="O":
-                q.append([0, j])
-
-        for i in range(r):
             if board[i][c-1]=="O":
                 q.append([i, c-1])
 
         for j in range(c):
+            if board[0][j]=="O":
+                q.append([0, j])
+            
             if board[r-1][j]=="O":
                 q.append([r-1, j])
 
