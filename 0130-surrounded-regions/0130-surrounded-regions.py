@@ -3,44 +3,56 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
+        q=deque()
         r=len(board)
         c=len(board[0])
-        vis = [['X'] * c for _ in range(r)]
-
-        def dfs(i, j):
-            if i<0 or j<0 or i>=r or j>=c:
-                return 
-            if board[i][j]=="O" and vis[i][j]=="X":
-                vis[i][j]="O"
-                dfs(i+1, j)
-                dfs(i-1, j)
-                dfs(i, j+1)
-                dfs(i, j-1)
-            return 
-
+        vis=[[False]*c for _ in range(r)]
+        for i in range(r):
+            if board[i][0]=="O":
+                q.append([i, 0])
 
         for j in range(c):
             if board[0][j]=="O":
-                dfs(0, j)
-
-            if board[r-1][j]=="O":
-                dfs(r-1, j)
-
+                q.append([0, j])
 
         for i in range(r):
-            if board[i][0]=="O":
-                dfs(i, 0)
-
             if board[i][c-1]=="O":
-                dfs(i, c-1)
+                q.append([i, c-1])
+
+        for j in range(c):
+            if board[r-1][j]=="O":
+                q.append([r-1, j])
+
+        dire=[0, 1, 0, -1, 0]
+        while q:
+            i, j= q.popleft()
+            vis[i][j]=True
+            for k in range(len(dire)-1):
+                x=i+dire[k]
+                y=j+dire[k+1]
+                if x<0 or y<0 or x>=r or y>=c or vis[x][y]:
+                    continue
+                if board[x][y]=="O":
+                    vis[x][y]=True
+                    q.append([x,y])
 
 
         for i in range(r):
             for j in range(c):
-                board[i][j] = vis[i][j]
+                if board[i][j]=="O" and not vis[i][j]:
+                    board[i][j]="X"
+
+        
+
 
 
         
+
+
+            
+
+
+
+    
+
         
-
-
