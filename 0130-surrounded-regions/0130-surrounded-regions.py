@@ -6,7 +6,6 @@ class Solution:
         q=deque()
         r=len(board)
         c=len(board[0])
-        vis=[[False]*c for _ in range(r)]
         for i in range(r):
             if board[i][0]=="O":
                 q.append([i, 0])
@@ -24,21 +23,24 @@ class Solution:
         dire=[0, 1, 0, -1, 0]
         while q:
             i, j= q.popleft()
-            vis[i][j]=True
+            board[i][j]="#"
             for k in range(len(dire)-1):
                 x=i+dire[k]
                 y=j+dire[k+1]
-                if x<0 or y<0 or x>=r or y>=c or vis[x][y]:
+                if x<0 or y<0 or x>=r or y>=c or board[x][y]=="#":
                     continue
                 if board[x][y]=="O":
-                    vis[x][y]=True
+                    board[x][y]="#"
                     q.append([x,y])
 
 
         for i in range(r):
             for j in range(c):
-                if board[i][j]=="O" and not vis[i][j]:
+                if board[i][j]=="O":
                     board[i][j]="X"
+
+                if board[i][j]=="#":
+                    board[i][j]="O" 
 
         
 
