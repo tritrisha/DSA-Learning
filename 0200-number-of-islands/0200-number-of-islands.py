@@ -27,7 +27,6 @@ class Solution:
         for ri in range(r):
             for cj in range(c):
                 if grid[ri][cj]=="1" and not vis[ri][cj]:
-                    print(grid[ri][cj])
                     q.append([ri, cj])
                     count+=bfs()
 
