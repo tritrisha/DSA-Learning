@@ -13,7 +13,7 @@ class Solution:
 
         for i in range(r):
             for j in range(c):
-                grid[i][j]=oneinr[i]+oneinc[j] - (r-oneinr[i])- (c-oneinc[j])
+                grid[i][j]=2*oneinr[i]+2*oneinc[j] - r - c
 
         return grid
 
