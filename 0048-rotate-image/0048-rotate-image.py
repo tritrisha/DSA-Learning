@@ -4,14 +4,13 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         n=len(matrix)
-        d=copy.deepcopy(matrix)
         for r in range(n):
-            for c in range(n):
-                d[r][c]= matrix[c][r]
+            for c in range(r+1, n):
+                matrix[r][c], matrix[c][r]= matrix[c][r], matrix[r][c]
 
 
         for i in range(n):
-            matrix[i]=d[i][::-1]
+            matrix[i]=matrix[i][::-1]
             
 
 
