@@ -3,7 +3,6 @@ class Solution:
         r=len(board)
         c=len(board[0])
         visa=[[0]*c for _ in range(r)]
-        copy=[[0]*c for _ in range(r)]
         s=[]
         def dfs(i, j,k):
             if i<0 or j<0 or i>=r or j>=c or k>=len(word) or board[i][j]!=word[k] or visa[i][j]==1 :
