@@ -1,25 +1,25 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        n=len(nums)
-        ps=[0]*n
-        for i in range(n):
-            ps[i]=ps[i-1]+nums[i]
+        c=0
+        presum=[0]*(len(nums))
+        for i in range(len(nums)):
+            presum[i]=presum[i-1]+nums[i]
 
-        hs={0:1}
-        count=0
-        for i in ps:
-            if (i-k) in hs:
-                count+=hs[i-k]
-                hs[i-k]+=1
-            if i in hs and i!=i-k:
-                hs[i]+=1
-            elif i not in hs:
-                hs[i]=1
+        print(presum)
+        h={0:1}
+        for i in presum:
+            p=i-k
+            if p in h:
+                c+=h[p]
+            if i in h:
+                h[i]+=1
+            else:
+                h[i]=1  
+        return c
 
-        return count
             
-        
 
 
-    
+
+
         
