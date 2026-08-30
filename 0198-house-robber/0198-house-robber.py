@@ -1,19 +1,17 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         x=len(nums)
-        def money(n):
-            if n>=x:
-                 return 0
-            if dp[n]!=-1:
-                return dp[n]
-            
-            pickn=nums[n]+money(n+2)
-            notpick=money(n+1)
-            dp[n]=max(pickn, notpick)
-            return dp[n]
+        if x==1:
+            return nums[0]
+        inn=nums[0]
+        exx=max(nums[0], nums[1])
+        for i in range(2, x):
+            curr=max(nums[i]+inn, exx)
+            inn=exx
+            exx=curr
+
+        return exx
 
         
-        dp=[-1]*x
-        return money(0)
 
         
