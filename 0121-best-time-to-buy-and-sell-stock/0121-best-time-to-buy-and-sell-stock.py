@@ -9,7 +9,7 @@ class Solution:
                 bi=i
 
             
-            if prices[i]>buy and bi<i:
+            elif prices[i]>buy:
                 m=max(m, prices[i]-buy)
 
         return m
