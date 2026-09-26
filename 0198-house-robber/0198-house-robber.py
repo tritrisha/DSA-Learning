@@ -1,17 +1,22 @@
 class Solution:
-    def rob(self, nums: List[int]) -> int:
-        x=len(nums)
-        if x==1:
-            return nums[0]
-        inn=nums[0]
-        exx=max(nums[0], nums[1])
-        for i in range(2, x):
-            curr=max(nums[i]+inn, exx)
-            inn=exx
-            exx=curr
+    def rob(self, nums: list[int]) -> int:
+        def hr(x):
+            if x==0:
+                return nums[0]
+            if x==-1:
+                return 0
 
-        return exx
+            if dp[x]!=-1:
+                return dp[x]
+            dp[x]=max(hr(x-1), hr(x-2)+nums[x])
+            return dp[x]
+                
+                
+        dp=[-1]*len(nums)
+        return hr(len(nums)-1)
 
         
+        
 
+        
         
