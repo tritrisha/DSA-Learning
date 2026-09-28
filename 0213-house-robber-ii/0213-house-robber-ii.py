@@ -1,19 +1,25 @@
 class Solution:
-    def rob(self, nums: List[int]) -> int:
-        x=len(nums)
-        dp=[0]*x
-        if x==1:
+    def rob(self, nums: list[int]) -> int:
+        if len(nums)==1:
             return nums[0]
-        for i in range(0, x-1):
-            dp[i]=max(nums[i]+dp[i-2], dp[i-1])
-        pick1=dp[i]
+        def hr(x, n):
+            if x==n-1:
+                return nums[n-1]
 
-        
-        dp=[0]*x
-        for i in range(1, x):
-            dp[i]=max(nums[i]+dp[i-2], dp[i-1])
+            if x==n:
+                return 0
 
-        return max(pick1, dp[i])
+            if dp[x]!=-1:
+                return dp[x]
+                
+            dp[x]=max(hr(x+1, n), hr(x+2, n)+nums[x])
+            return dp[x]
 
+
+        dp=[-1]*len(nums)
+        one=hr(0, len(nums)-1)
+        dp=[-1]*len(nums)
+        two= hr(1, len(nums))
+        return max(one, two)
 
         
