@@ -1,23 +1,22 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
-        def numbers(x, c):
-            if x>=len(s):
-                return 1
-            if s[x]=='0':
-                return 0
-            if dp[x]!=-1:
-                return dp[x]
-            
-            c=numbers(x+1, c)
-            if x+1<len(s) and int(s[x:x+2])<=26:
-                c+=numbers(x+2, c)
+        c=0
+        dp=[0]*(len(s)+1)
+        dp[0]=1
+        if s[0]!='0':
+            dp[1]=1
+        for i in range(2, len(s)+1):
+            oned=int(s[i-1:i])
+            twod=int(s[i-2:i])
 
-            dp[x]=c
-            return dp[x]
+            if oned>=1:
+                dp[i]+=dp[i-1]
+
+            if twod>=10 and twod<=26:
+                dp[i]+=dp[i-2]
 
 
-        dp=[-1]*len(s)
-        return numbers(0, 0)
+        return dp[len(s)]
 
 
 
