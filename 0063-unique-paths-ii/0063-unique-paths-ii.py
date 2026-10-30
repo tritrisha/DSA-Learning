@@ -1,22 +1,20 @@
 class Solution:
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        m=len(obstacleGrid)
-        n=len(obstacleGrid[0])
-        dp=[[-1]*n for _ in range(m)]
-        def og(i, j):
-            if i>=m or j>=n or obstacleGrid[i][j]==1:
+    def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
+        r=len(obstacleGrid)
+        c=len(obstacleGrid[0])
+        def dfs(i,j):
+            if i<0 or j<0 or i>=r or j>=c or obstacleGrid[i][j]==1:
                 return 0
-            if i==(m-1) and j==(n-1):
+
+            if i==r-1 and j==c-1:
                 return 1
 
             if dp[i][j]!=-1:
                 return dp[i][j]
 
-            dp[i][j]=og(i+1, j)+og(i, j+1)
-
+            dp[i][j]=dfs(i+1, j)+dfs(i, j+1)
             return dp[i][j]
 
-        
-        return og(0, 0)
-
+        dp=[[-1]*c for _ in range(r)]
+        return dfs(0, 0)
         
