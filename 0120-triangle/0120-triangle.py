@@ -1,19 +1,17 @@
 class Solution:
     def minimumTotal(self, triangle: list[list[int]]) -> int:
-        def ds(x, y):
-            if x>=len(triangle) or y>=len(triangle):
-                return 0
+        n=len(triangle)
+        dp=[[0]*n for _ in range(n)]
+        for i in range(n):
+            dp[n-1][i]=triangle[n-1][i]
+        for i in range(n-1, 0, -1):
+            for j in range(i):
+                dp[i-1][j]=min(dp[i][j], dp[i][j+1])+triangle[i-1][j]
 
-            if dp[x][y]!='x':
-                return dp[x][y]
-            dp[x][y]=min(ds(x+1, y+1), ds(x+1, y))+triangle[x][y]
-            return dp[x][y]
+        return dp[0][0]
+
             
 
-        n=len(triangle)
-        dp=[['x']*n for _ in range(n)]
-
-        return ds(0, 0)
         
 
 
