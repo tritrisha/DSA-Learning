@@ -1,17 +1,16 @@
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        buy=prices[0]
-        bi=0
-        m=0
-        for i in range(1,len(prices)):
-            if buy>prices[i]:
-                buy=prices[i]
-                bi=i
+    def maxProfit(self, prices: list[int]) -> int:
+        for day, pr in enumerate(prices):
+            if day==0:
+                profit, mini=0, pr
+                continue
 
-            
-            elif prices[i]>buy:
-                m=max(m, prices[i]-buy)
+            cost=pr-mini
+            profit=max(profit, cost)
+            mini=min(mini, pr)
 
-        return m
-            
+
+
+        return profit
+
         
