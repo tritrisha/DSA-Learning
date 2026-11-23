@@ -1,14 +1,19 @@
 class ProductOfNumbers:
 
     def __init__(self):
-        self.pon=[]
+        self.pon=[1]
 
     def add(self, num: int) -> None:
-        self.pon.append(num)
+        if num==0:
+            self.pon=[1]
+        else:
+            self.pon.append(self.pon[-1] * num)
 
     def getProduct(self, k: int) -> int:
-        n=len(self.pon)
-        return prod(self.pon[n-k:n+1])
+        if k>=len(self.pon):
+            return 0
+
+        return self.pon[-1]//self.pon[-1-k]
 
 
 # Your ProductOfNumbers object will be instantiated and called as such:
